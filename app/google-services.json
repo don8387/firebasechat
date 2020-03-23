@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "878100615613-ad342gr9v16hg3isphmk7g4emh6g7f2p.apps.googleusercontent.com",
+          "client_id": "878100615613-1ttvh11n3fmjj2fd3h5aaihcqlhnjg63.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "fire.base.chat",
-            "certificate_hash": "a39308e649960a5d49787b835702c4dfa0db75cb"
+            "certificate_hash": "dc2dfe61ab374b538a96330fb127fc4677c272e4"
           }
         },
         {
