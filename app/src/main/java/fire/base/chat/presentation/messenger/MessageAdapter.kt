@@ -1,4 +1,4 @@
-package fire.base.chat.messenger
+package fire.base.chat.presentation.messenger
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable

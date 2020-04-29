@@ -4,7 +4,7 @@ import android.app.Application
 import fire.base.chat.api.FireBaseChatApiCreator
 import fire.base.chat.api.FireBaseChatApiFactory
 import fire.base.chat.data.MessageRepositoryRemote
-import fire.base.chat.messenger.MessengerViewModel
+import fire.base.chat.presentation.messenger.MessengerViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -28,7 +28,9 @@ class AppChat : Application() {
                 MessageRepositoryRemote(fireBaseChatApiFactory = get())
             }
             viewModel {
-                MessengerViewModel(messageRepositoryRemote = get())
+                MessengerViewModel(
+                    messageRepositoryRemote = get()
+                )
             }
         }
 

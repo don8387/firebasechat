@@ -3,53 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="12dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="12dp"
-    android:elevation="4dp">
+    android:layout_height="wrap_content">
 
     <View
         android:id="@+id/profile_icon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/profile_icon_default"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/user_name"
+    <LinearLayout
+        android:id="@+id/text_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:ellipsize="end"
-        android:lines="1"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/message_text_container_bg"
+        android:orientation="vertical"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/profile_icon"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/profile_icon"
-        tools:text="Tony Stark" />
+        app:layout_constraintWidth_default="wrap">
 
-    <TextView
-        android:id="@+id/message_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:ellipsize="end"
-        android:gravity="top|start"
-        android:lines="2"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        android:textStyle="normal"
-        app:layout_constraintLeft_toLeftOf="@+id/user_name"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name"
-        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore" />
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins"
+            android:includeFontPadding="false"
+            android:lines="1"
+            android:textColor="#A3267B"
+            android:textSize="10sp"
+            tools:text="Tony Stark" />
+
+        <TextView
+            android:id="@+id/message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins"
+            android:includeFontPadding="false"
+            android:maxLines="3"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            tools:text="That sounds good" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package fire.base.chat.messenger
+package fire.base.chat.presentation.messenger
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,9 +21,14 @@ class MessengerFragment : Fragment() {
     private lateinit var messagesList: RecyclerView
     private lateinit var sendMessageButton: ImageButton
 
-    private val messageAdapter = MessageAdapter()
+    private val messageAdapter =
+        MessageAdapter()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         return inflater.inflate(R.layout.messenger_fragment, container, false)
     }
 
@@ -32,6 +37,7 @@ class MessengerFragment : Fragment() {
 
         initViews(view)
         subscribeOnDataSources()
+//        addBots(1)
     }
 
     private fun addBots(botCount: Int) {
@@ -44,35 +50,39 @@ class MessengerFragment : Fragment() {
         messagesList = view.findViewById(R.id.message_recycler_view)
         messagesList.apply {
             layoutManager = LinearLayoutManager(
-                    context,
-                    LinearLayoutManager.VERTICAL,
-                    true
+                context,
+                LinearLayoutManager.VERTICAL,
+                true
             )
             adapter = messageAdapter
+            addItemDecoration(MessageItemDecorator())
         }.smoothScrollToPosition(0)
 
         sendMessageButton = view.findViewById(R.id.send_message)
         sendMessageButton.setOnClickListener {
-            addBots(1)
             inputBox.text
-                    ?.toString()
-                    ?.takeIf { !it.isBlank() }
-                    ?.let { typedMessage: String ->
-                        messengerViewModel.sendMessage(message = typedMessage)
-                        inputBox.text.clear()
-                    }
+                ?.toString()
+                ?.takeIf { !it.isBlank() }
+                ?.let { typedMessage: String ->
+                    messengerViewModel.sendMessage(message = typedMessage)
+                    inputBox.text.clear()
+                }
         }
     }
 
     private fun subscribeOnDataSources() {
         messengerViewModel
-                .getLastReceivedMessage()
-                .observe(requireActivity(), Observer(::onLastReceivedMessage))
+            .getLastReceivedMessage()
+            .observe(
+                requireActivity(),
+                Observer(::onLastReceivedMessage)
+            )
     }
 
     private fun onLastReceivedMessage(messageItem: MessageItem?) {
         messageItem?.let {
             messageAdapter.addMessage(listOf(it))
         }
+        messagesList.smoothScrollToPosition(0)
     }
 }

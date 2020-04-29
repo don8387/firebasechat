@@ -1,4 +1,4 @@
-package fire.base.chat.messenger.base
+package fire.base.chat.presentation.messenger.base
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel

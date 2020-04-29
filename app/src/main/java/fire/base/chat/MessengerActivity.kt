@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.messaging.FirebaseMessaging
-import fire.base.chat.messenger.MessengerFragment
+import fire.base.chat.presentation.messenger.MessengerFragment
 
 class MessengerActivity : AppCompatActivity() {
 
@@ -13,8 +13,11 @@ class MessengerActivity : AppCompatActivity() {
         setContentView(R.layout.messenger_activity)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.container, MessengerFragment())
-                    .commitNow()
+                .replace(
+                    R.id.container,
+                    MessengerFragment()
+                )
+                .commitNow()
         }
     }
 
@@ -26,15 +29,15 @@ class MessengerActivity : AppCompatActivity() {
 
     private fun subscribeToTopic(topic: String) {
         FirebaseMessaging.getInstance().subscribeToTopic(topic)
-                .addOnCompleteListener { task ->
-                    val message = if (task.isSuccessful) {
-                        getString(R.string.success_subscription)
-                    } else {
-                        getString(R.string.failed_subscription)
-                    }
-
-                    Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
+            .addOnCompleteListener { task ->
+                val message = if (task.isSuccessful) {
+                    getString(R.string.success_subscription)
+                } else {
+                    getString(R.string.failed_subscription)
                 }
+
+                Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
+            }
     }
 
     override fun onStop() {
@@ -45,14 +48,14 @@ class MessengerActivity : AppCompatActivity() {
 
     private fun unsubscribeFromTopic(topic: String) {
         FirebaseMessaging.getInstance().unsubscribeFromTopic(topic)
-                .addOnCompleteListener { task ->
-                    val message = if (task.isSuccessful) {
-                        getString(R.string.success_subscription)
-                    } else {
-                        getString(R.string.failed_subscription)
-                    }
-
-                    Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
+            .addOnCompleteListener { task ->
+                val message = if (task.isSuccessful) {
+                    getString(R.string.success_subscription)
+                } else {
+                    getString(R.string.failed_subscription)
                 }
+
+                Toast.makeText(baseContext, message, Toast.LENGTH_SHORT).show()
+            }
     }
 }

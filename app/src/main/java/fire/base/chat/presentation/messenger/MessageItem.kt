@@ -1,4 +1,4 @@
-package fire.base.chat.messenger
+package fire.base.chat.presentation.messenger
 
 data class MessageItem(
         val text: String = "",
