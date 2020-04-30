@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.messaging.FirebaseMessaging
 import fire.base.chat.AppChat
 import fire.base.chat.FireBaseChatConstants.TOPIC_FOR_REQUEST
 import fire.base.chat.bot.TickBot
@@ -21,7 +22,10 @@ class MessengerViewModel(
 ) : BaseViewModel(), TickBot.TickActionListener {
 
     private val lastReceivedMessage = MutableLiveData<MessageItem>()
+    private val isFirebaseConnected = MutableLiveData<Boolean>()
     private val botList = arrayListOf<TickBot>()
+
+    private var topic: String? = null
 
     init {
         fcmListenerServiceInteractor
@@ -43,7 +47,8 @@ class MessengerViewModel(
 
     fun getLastReceivedMessage(): LiveData<MessageItem> = lastReceivedMessage
 
-    @SuppressLint("CheckResult")
+    fun isFirebaseConnected(): LiveData<Boolean> = isFirebaseConnected
+
     fun sendMessage(
         topic: String = TOPIC_FOR_REQUEST,
         name: String = "you",
@@ -71,6 +76,10 @@ class MessengerViewModel(
         }
     }
 
+    fun setActiveTopic(newTopic: String) {
+        topic = newTopic
+    }
+
     override fun onTickDo(botMessage: TickBot.TickBotPhrase) {
         sendMessage(
             name = botMessage.name,
@@ -78,5 +87,30 @@ class MessengerViewModel(
             topic = botMessage.topic,
             profileColor = botMessage.iconColor
         )
+    }
+
+    fun subscribeToTopic() {
+        topic?.run {
+            FirebaseMessaging
+                .getInstance()
+                .subscribeToTopic(this)
+                .addOnCompleteListener { task ->
+                    isFirebaseConnected.value = task.isSuccessful
+                }
+        }
+    }
+
+    fun unsubscribeFromTopic() {
+        topic?.let { nonNullTopic: String ->
+            isFirebaseConnected().value?.takeIf { it }?.run {
+                FirebaseMessaging
+                    .getInstance()
+                    .unsubscribeFromTopic(nonNullTopic)
+                    .addOnCompleteListener { task ->
+                        isFirebaseConnected.value = task.isSuccessful
+                    }
+
+            }
+        }
     }
 }

@@ -28,9 +28,7 @@ class AppChat : Application() {
                 MessageRepositoryRemote(fireBaseChatApiFactory = get())
             }
             viewModel {
-                MessengerViewModel(
-                    messageRepositoryRemote = get()
-                )
+                MessengerViewModel(messageRepositoryRemote = get())
             }
         }
 

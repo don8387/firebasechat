@@ -3,4 +3,10 @@
 
     <string name="success_subscription">subscribed successfully</string>
     <string name="failed_subscription">subscription failed</string>
+    <string name="close_topic_dialog">close topic chooser dialog</string>
+    <string name="topic_dialog_title">Type needed topic</string>
+    <string name="topic_dialog_description">It is needed to specify a topic (aka room in messaging apps ). You can connect to a default room or you type any topic in order to create a new room</string>
+    <string name="topic_dialog_connect_button_title">Connect</string>
+    <string name="connection_active_desc">Connected</string>
+    <string name="connection_inactive_desc">Disconnected</string>
 </resources>

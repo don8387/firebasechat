@@ -24,7 +24,7 @@ class MessengerActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
 
-        subscribeToTopic(FireBaseChatConstants.TOPIC_FOR_SUBSCRIPTION)
+//        subscribeToTopic(FireBaseChatConstants.TOPIC_FOR_SUBSCRIPTION)
     }
 
     private fun subscribeToTopic(topic: String) {
@@ -43,7 +43,7 @@ class MessengerActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
 
-        unsubscribeFromTopic(FireBaseChatConstants.TOPIC_FOR_SUBSCRIPTION)
+//        unsubscribeFromTopic(FireBaseChatConstants.TOPIC_FOR_SUBSCRIPTION)
     }
 
     private fun unsubscribeFromTopic(topic: String) {

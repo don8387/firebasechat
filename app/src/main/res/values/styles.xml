@@ -12,4 +12,14 @@
 
     <style name="AppTheme" parent="BaseAppTheme" />
 
+    <style name="TopicDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/TopicDialogAnimation</item>
+    </style>
+
+    <style name="TopicDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom_animation</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom_animation</item>
+    </style>
+
 </resources>
